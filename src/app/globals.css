@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Lucky wheel page (/lucky-wheel) */
+.lw-page {
+  background-color: #ffa514;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath d='M40 14l9 19 21 3-15 14 4 21-19-10-19 10 4-21-15-14 21-3z' fill='%23f08a00' fill-opacity='.35'/%3E%3Cpath d='M120 94l9 19 21 3-15 14 4 21-19-10-19 10 4-21-15-14 21-3z' fill='%23f08a00' fill-opacity='.35'/%3E%3C/svg%3E"),
+    linear-gradient(#ffb627, #ff9100);
+  background-size: 160px 160px, 100% 100%;
+}
+
+.lw-title {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  -webkit-text-stroke: 6px #e8457a;
+  paint-order: stroke fill;
+  text-shadow: 0 5px 0 #b8245a;
+}
+
+.lw-card {
+  background: #fff8e7;
+  border: 5px solid #f05d8f;
+  border-radius: 28px;
+  box-shadow: 0 8px 0 #c9346a;
+}
+
+.lw-textarea {
+  background: #fff;
+  border: 3px solid #ffd27a;
+  border-radius: 16px;
+  color: #5b2a00;
+  font-weight: 600;
+}
+
+.lw-textarea:focus {
+  outline: none;
+  border-color: #f05d8f;
+}
+
+.lw-spinButton {
+  background: linear-gradient(#7ee03a, #4caf1c);
+  border: 4px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 7px 0 #2f7a0e, 0 10px 18px rgb(0 0 0 / 0.25);
+  color: #fff;
+  font-weight: 900;
+  -webkit-text-stroke: 4px #2f7a0e;
+  paint-order: stroke fill;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.lw-spinButton:active:not(:disabled) {
+  transform: translateY(5px);
+  box-shadow: 0 2px 0 #2f7a0e, 0 4px 8px rgb(0 0 0 / 0.25);
+}
+
+.lw-spinButton:disabled {
+  background: linear-gradient(#d4d4d4, #a3a3a3);
+  box-shadow: 0 7px 0 #737373;
+  -webkit-text-stroke-color: #737373;
+  cursor: not-allowed;
+}
+
+.lw-bulb {
+  animation: lw-twinkle 1.2s ease-in-out infinite;
+}
+
+.lw-bulbAlt {
+  animation: lw-twinkle 1.2s ease-in-out -0.6s infinite;
+}
+
+.lw-fast .lw-bulb,
+.lw-fast .lw-bulbAlt {
+  animation-duration: 0.3s;
+}
+
+@keyframes lw-twinkle {
+  0%,
+  100% {
+    fill: #fffbe0;
+    filter: drop-shadow(0 0 3px #fff6a8);
+  }
+  50% {
+    fill: #ffd84d;
+    filter: none;
+  }
+}
+
+.lw-winnerSlice {
+  animation: lw-flash 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes lw-flash {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.45;
+  }
+}
+
+.lw-popIn {
+  animation: lw-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes lw-pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fortune page (/fortune) */
+.fx-page {
+  background:
+    radial-gradient(circle at 50% 0%, rgb(255 210 120 / 0.2), transparent 60%),
+    linear-gradient(#a3121a, #6e0b10);
+}
+
+.fx-button {
+  background: #ffd34d;
+  border: 3px solid #3d1a0c;
+  border-radius: 999px;
+  box-shadow: 0 5px 0 #3d1a0c;
+  color: #3d1a0c;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.fx-button:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #3d1a0c;
+}
+
+.fx-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.fx-shake {
+  animation: fx-shake 0.2s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes fx-shake {
+  0%,
+  100% {
+    transform: rotate(-12deg) translateY(0);
+  }
+  50% {
+    transform: rotate(12deg) translateY(-6px);
+  }
+}
+
+.fx-reveal {
+  animation: fx-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fx-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
